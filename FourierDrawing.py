@@ -6,6 +6,18 @@ from math import floor
 def distance(point1, point2):
     return np.sqrt((point1[0]-point2[0])**2 + (point1[1]-point2[1])**2)
 
+def parse_command_line():
+    """Parses the command line arguments.
+
+    ### Returns
+    - `str`
+    """
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("filename", help="The SVG file to draw")
+    args = parser.parse_args()
+    return args.filename
+
 #read svg file
 def read_svg(filename):
     """Reads an SVG file and returns a list of the data.
@@ -89,9 +101,12 @@ def main():
     # Initialize graphics
     graphics = Graphics.Graphics(800, 600)
 
+    # Parse command line
+    filename = parse_command_line()
+
     # Read svg file
     # I used https://boxy-svg.com/app to draw some svg files
-    data = read_svg("star.svg")
+    data = read_svg(filename)
 
     # Get curve from data
     curve = parse_svg(data)
