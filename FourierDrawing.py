@@ -15,8 +15,9 @@ def parse_command_line():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("filename", help="The SVG file to draw")
+    parser.add_argument("-n", "--number", type=int, default=61, help="The number of vectors to use")
     args = parser.parse_args()
-    return args.filename
+    return args.filename, args.number
 
 #read svg file
 def read_svg(filename):
@@ -102,7 +103,7 @@ def main():
     graphics = Graphics.Graphics(800, 600)
 
     # Parse command line
-    filename = parse_command_line()
+    filename, number_vectors = parse_command_line()
 
     # Read svg file
     # I used https://boxy-svg.com/app to draw some svg files
@@ -112,7 +113,7 @@ def main():
     curve = parse_svg(data)
 
     # Numerically integrate the curve times e^(-i*2*pi*t)	
-    phasors = fourier_phasors(curve, 31)
+    phasors = fourier_phasors(curve, number_vectors)
 
     # Create and set the vectors
     tipList = []
