@@ -1,6 +1,11 @@
 ## Fourier Drawing
 Implementation of Fourier Drawing (inspired by 3b1b video on it) written in Python and using Pygame.
 
+### Requirements
+```
+pip install -r requirements.txt
+```
+
 ### Usage
 ```
 python FourierDrawing.py <FILENAME.svg> -n <Number of vectors to draw with>
